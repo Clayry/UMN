@@ -1,0 +1,63 @@
+1.APA ITU IPC?
+cara dua program saling ngobrol
+
+2.BAGAIMANA CARANYA PROSES
+BERKOMUNIKASI?
+menggunakan pipe dan shared memory
+
+3.JELASKAN 2 JENIS PIPE
+unnamed pipe = tiddak punya nama, tidak terlihat di file system, hanya sementara, hanya untuk proses yang dibuat bersamaan (fork)
+named pipe = punya nama, terlihat di fle system, muncul seperti file biasa, tapi ukurannya 0
+
+4.JELASKAN KONSEP DARI FIFO
+ibarat orang antri, yang dilayani dlu urutannya 
+
+5.APA ITU SHARED MEMORY
+APABILA PIPE DIKIRIM LEWAT SEBUAH JALUR
+(PIPA), SHARED MEMORY BERARTI
+MENGGUNAKAN MEMORI YANG SAMA.
+SATU BLOK MEMORY YANG BISA DIAKSES
+BANYAK PROSES SEKALIGUS. JADI, PROCESS A, B,
+C BISA MEMBACA ATAU MENULIS DI MEMORY
+YANG SAMA
+
+6.APA ITU RACE CONDITION
+MASALAH YANG DAPAT TERJADI APABILA 2
+PROSES MENULIS SECARA BERSAMAAN
+DATA BISA RUSAK ATAU TIDAK KONSISTEN.
+
+7.KETIKA WRFIFO DAN RDFIFO DIJALANKAN,
+APA YANG TERJADI? TULISKAN
+KESIMPULAN DARI KEDUA PROGRAM
+Ketika kedua program ini dijalankan, proses WRFIFO akan menulis data ke FIFO, dan RDFIFO akan membaca data dari FIFO tersebut, sehingga memungkinkan komunikasi antara dua proses.
+
+8.APA ITU AGRC DAN AGRV[]?
+AGRC = biasanya merujuk pada suatu variabel atau konstanta dalam konteks program yang berkaitan dengan komunikasi antar proses atau shared memory.
+
+AGRV = kemungkinan adalah array yang menyimpan data atau alamat tertentu yang digunakan dalam program tersebut.
+
+9.BAGAIMANA CARANYA MENGHAPUS
+SHARED MEMORY?
+dapat menggunakan fungsi shmctl() dengan argumen IPC_RMID, yang akan menghapus segment shared memory.
+10.APA YANG TERJADI DI
+SHMDEMO_VARIAN.C? TULISKAN
+KESIMPULAN APABILA FTOK DIGANTI
+Mengganti nilai ftok() akan mengubah key yang digunakan untuk akses ke shared memory, sehingga program yang bergantung pada key tersebut tidak akan dapat mengakses memori yang sebelumnya digunakan.
+
+8.APA FUNGSI IPCRM -M
+perintah yang digunakan untuk menghapus shared memory segment di sistem berbasis UNIX/Linux.
+
+9.DI PROGRAM SHMRACE.C, APA YANG
+TERJADI JIKA DIJALANKAN BERULANG
+KALI?
+Jika program ini dijalankan berulang kali tanpa penanganan race condition, maka bisa terjadi konflik atau akses yang tidak terduga pada shared memory, yang bisa menghasilkan hasil yang tidak konsisten.
+
+10.APA HASILNYA KONSISTEN/SAMA SETIAP
+KALI DIJALANKAN? APA HASIL YANG
+SEHARUSNYA DIHARAPKAN?
+Hasil yang diharapkan adalah konsisten, tetapi jika tidak ada kontrol yang tepat, hasilnya bisa bervariasi setiap kali program dijalankan.
+
+11.JELASKAN MENGAPA BISA TERJADI HASIL
+YANG DIDAPATKAN
+Masalah ini terjadi karena akses simultan tanpa sinkronisasi yang benar di antara proses-proses yang berjalan.
+

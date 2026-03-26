@@ -1,0 +1,3 @@
+Vilbert Nusantara#Deposit#500000#2026-03-01
+Rina Pratama#Withdraw#200000#2026-03-02
+Kevin Jonathan#Transfer#300000#2026-03-03
