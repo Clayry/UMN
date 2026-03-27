@@ -1,6 +1,41 @@
-*.exe
-*.o
+# --- Compiled Binaries ---
 *.out
+*.exe
+*.app
+# Ignore all files without an extension in the root (common for Linux binaries)
+# Be careful with this one if you have files without extensions that ARE source code
+# *
+# !*.* 
+
+# --- Intermediate Object Files ---
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.a
+*.lib
+
+# --- Build Directories ---
+build/
+bin/
+obj/
+out/
+
+# --- IDE & Editor Specific ---
 .vscode/
-Debug/
-Release/
+.idea/
+*.swp
+*.swo
+.DS_Store
+vcpkg_installed/
+
+# --- Debug/Log Files ---
+*.log
+*.dmp
+*.pdb
+
+# --- Unit Test Coverage ---
+*.gcno
+*.gcda
+*.gcov
