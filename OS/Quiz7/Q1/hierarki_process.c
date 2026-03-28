@@ -5,42 +5,40 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-void to_uppercase(char *str) {
-  for (int i = 0; str[i]; i++) {
-    str[i] = toupper((unsigned char)str[i]);
-  }
-}
-
 int main() {
-  char input[256];
+  char input_string[256];
 
-  printf("Masukkan String: ");
-  fflush(stdout);
-  if (fgets(input, sizeof(input), stdin) == NULL) {
-    perror("fgets");
-    exit(EXIT_FAILURE);
+  printf("Masukkan string: ");
+  fgets(input_string, sizeof(input_string), stdin);
+  input_string[strcspn(input_string, "\n")] = 0;
+
+  printf("Process A: %d %d : %s\n", getpid(), getppid(), input_string);
+
+  pid_t pid_B = fork();
+
+  if (pid_B == 0) {
+    printf("Process B: %d %d : %s\n", getpid(), getppid(), input_string);
+    pid_t pid_D = fork();
+    if (pid_D == 0) {
+      printf("Process B: %d %d : %s\n", getpid(), getppid(), input_string);
+      exit(0);
+    } else if (pid_D > 0) {
+      waitpid(pid_D, NULL, 0);
+      exit(0);
+    }
+  } else if (pid_B > 0) {
+    waitpid(pid_B, NULL, 0);
+
+    pid_t pid_C = fork();
+    if (pid_C == 0) {
+      for (int i = 0; input_string[i]; i++) {
+        input_string[i] = toupper(input_string[i]);
+      }
+      printf("Process C: %d %d : %s\n", getpid(), getppid(), input_string);
+      exit(0);
+    } else if (pid_C > 0) {
+      waitpid(pid_C, NULL, 0);
+    }
   }
-
-  input[strcspn(input, "\n")] = '\0';
-
-  int pipe_ac[2];
-  int pipe_bd[2];
-
-  if (pipe(pipe_ac) == -1 || pipe(pipe_bd) == -1) {
-    perror("pipe");
-    exit(EXIT_FAILURE);
-  }
-
-  pid_t pid_b, pid_c;
-
-  pid_c = fork();
-  if (pid_c < 0) {
-    perror("fork C");
-    exit(EXIT_FAILURE);
-  }
-
-  if (pid_c == 0) {
-    close(pipe_ac[1]);
-  }
+  return 0;
 }
