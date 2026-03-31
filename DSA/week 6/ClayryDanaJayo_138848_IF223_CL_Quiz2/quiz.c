@@ -3,19 +3,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
+typedef struct Client {
   char name[50];
   char tanggal[12];
   int jumlahTransaksi;
 } Client;
 
-typedef struct {
+typedef struct Node {
   Client data;
   struct Node *next;
   struct Node *prev;
 } Node;
 
-typedef struct {
+typedef struct Stack {
   Node *top;
 } Stack;
 
@@ -46,7 +46,7 @@ void saveToFile(Stack *stack) {
   Node *cur = stack->top;
   while (cur) {
     Client t = cur->data;
-    fprintf(fp, "%s#%s#d#s\n", t.name, t.tanggal, t.jumlahTransaksi);
+    fprintf(fp, "%s#%s#%d#s\n", t.name, t.tanggal, t.jumlahTransaksi);
     cur = cur->next;
   }
 
