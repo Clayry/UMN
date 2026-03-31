@@ -46,7 +46,7 @@ void saveToFile(Stack *stack) {
   Node *cur = stack->top;
   while (cur) {
     Client t = cur->data;
-    fprintf(fp, "%s#%s#%d#s\n", t.name, t.tanggal, t.jumlahTransaksi);
+    fprintf(fp, "%s#%s#%d#\n", t.name, t.tanggal, t.jumlahTransaksi);
     cur = cur->next;
   }
 
