@@ -39,3 +39,6 @@ vcpkg_installed/
 *.gcno
 *.gcda
 *.gcov
+
+*.zip
+*.tar.gz
