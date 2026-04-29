@@ -1,0 +1,14 @@
+Belady's Anomaly
+
+Belady's Anomaly adalah fenomena berlawanan di mana penambahan jumlah frame justru mengakibatkan peningkatan jumlah page fault.
+
+Beladyʼs Anomaly adalah fenomena di mana menambah jumlah frame justru
+meningkatkan jumlah Page Fault, berkebalikan dari yang diharapkan.
+
+Pada umumnya, dengan melakukan penambahan jumlah frame maka akan mengurangi jumlah dari page fault atau tidak menyebabkan perubahan sama sekali pada page fault.
+Namun, pada kondisi tertentu dapat terjadinya "Belady's Anomaly" yang menyebabkan bertambahnya jumlah page fault ketika adanya penambahan jumlah frame.
+
+
+Anomali ini terjadi ketika alokasi frame yang lebih besar justru menghasilkan jumlah page fault yang lebih banyak.
+Contoh pada praktek yang baru saja dipelajari, ketika menjalankan reference string pada 3 frame, maka akan mendapatkan 9 page faults, namun ketika menjalankan 4 frame justru page faults malah bertambah menjadi 10.
+Hal ini telah membuktikan bahwa FIFO tidak kebal terhadap Belady's Anomaly dikarenakan FIFO tidak selalu memenuhi kriteria stack algorithm.
