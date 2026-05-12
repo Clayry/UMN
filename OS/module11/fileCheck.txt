@@ -1,0 +1,36 @@
+1. Explain the status displayed and indicate the section that reports the file type!
+   Status yang ditampilkan adalah metadata file dari struktur stat, dan tipe file dilaporkan pada bagian File type.
+ 2. Explain what an inode or file serial number is!
+   Inode adalah nomor identitas unik file dalam sistem file yang menyimpan atribut dan lokasi fisik data pada disk.
+ 3. Try copying a file. Are the inodes different? What about the contents of the two files?
+   Nomor inode berbeda karena sistem membuat entri baru, namun isi kedua file tersebut tetap sama.
+ 4. What does it mean if the inode numbers are different?
+   Hal ini berarti kedua file tersebut adalah entitas fisik yang berbeda dan berdiri sendiri di dalam disk.
+ 5. Are the status of the files the same?
+   Ya, status atau atribut file pada hard link akan terlihat sama karena merujuk pada objek yang sama.
+ 6. Are the contents of the files the same? Are the inode numbers the same?
+   Ya, isi file dan nomor inode pada hard link adalah sama karena keduanya berbagi data fisik yang identik.
+ 7. What does it mean if the inode numbers are the same? How many link counts are reported?
+   Artinya beberapa nama file merujuk pada satu data fisik yang sama, dan link count akan menunjukkan jumlah referensi ke inode tersebut.
+ 8. Delete one of the files and observe whether the link count decreases?
+   Ya, menghapus salah satu file akan mengurangi jumlah link count pada inode tersebut.
+ 9. Make a conclusion on the difference between the results of running the copy and link commands!
+   Copy menghasilkan file baru dengan inode baru, sedangkan link hanya menambah nama alias pada inode yang sudah ada.
+ 10. Is the content of the new_soft_link_file the same as the existing file?
+   Ya, secara logis isinya sama saat diakses, namun secara fisik soft link hanya berisi jalur ke file asli.
+ 11. Has the link count increased? Is the reported inode number the same?
+   Link count file asli tidak bertambah, dan soft link memiliki nomor inode yang berbeda dari file aslinya.
+ 12. Draw a conclusion on the difference between hard links and soft links!
+   Hard link berbagi inode yang sama dengan file asli, sedangkan soft link adalah file terpisah yang menunjuk ke jalur file asli.
+ 13. Explain why a directory has at least two hard links?
+   Karena direktori dirujuk oleh namanya sendiri di induknya dan oleh entri titik di dalam dirinya sendiri.
+ 14. Where is the file name stored?
+   Nama file disimpan di dalam directory entry, bukan di dalam inode atau status file.
+ 15. Study this program and explain what it does (prak11-2.c).
+   Program ini membuka suatu direktori dan membaca isinya untuk menampilkan nama semua file yang ada di dalamnya.
+ 16. Why are they different (prak11-2.c output vs ls command)?
+   Program menampilkan semua entri mentah termasuk file tersembunyi seperti titik, sedangkan ls biasanya menyaring dan mengurutkan outputnya.
+ 17. Study this program and explain what it does (prak11-3.c)!
+   Program ini mendemonstrasikan penguncian file secara eksklusif agar proses lain harus menunggu sebelum bisa mengakses file tersebut.
+ 18. What if the lock type were changed to a read (shared) lock?
+   Beberapa proses bisa memegang kunci baca secara bersamaan, namun tidak ada yang bisa menulis ke file tersebut.
