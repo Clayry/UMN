@@ -1,0 +1,114 @@
+/*Buat Header*/
+body {
+    font-family: Arial;
+    font: size 14px;
+}
+
+#logo {
+    font-family: "Comic Sans MS";
+    color: tomato;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+ul#nav {
+    margin: 0;
+    padding: 0;
+}
+
+ul#nav li {
+    list-style: none;
+    display: inline-block;  
+    margin-right: 20px;
+}
+
+ul#nav li a {
+    text-decoration: none;
+    padding: 10px 0;
+    color: deeppink;
+    font-weight: bold;
+}
+
+ul#nav li a:hover {
+    color: tomato;
+    border-bottom: 3px solid tomato;
+}
+
+/*Buat Kontak.html*/
+#daftar {
+    background-color: deeppink;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #b00068;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#daftar:hover {
+    background-color: tomato;
+    box-shadow: 0 4px 0 #c43d2f;
+    transform: translateY(-1px);
+}
+
+#daftar:focus-visible {
+    outline: 3px solid #ffb3d9;
+    outline-offset: 3px;
+}
+
+#daftar:active {
+    box-shadow: 0 1px 0 #b00068;
+    transform: translateY(3px);
+}
+
+#nama {
+    background-color: yellow;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+}
+
+/*Buat Portofolio.html*/
+body > ul:not(#nav) {
+    padding: 0;
+}
+
+body > ul:not(#nav) li {
+    display: inline-block;
+    list-style: none;
+    margin-right: 10px;
+}
+
+body > ul:not(#nav) img {
+    display: block;
+    border: 10px solid gray;
+}
+
+body > ul:not(#nav) img:hover {
+    border-color: deeppink;
+}
+
+/*buat servis.html*/
+.webdev, .nft {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.webdev th, .nft th, .webdev td, .nft td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+#webdev-header, #nft-header {
+    background-color: deeppink;
+    color: black;
+    text-align: center;
+        
+}
+
+.webdev th, .nft th {
+    color: black;
+    text-align: center;
+}

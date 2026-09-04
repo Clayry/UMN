@@ -1,0 +1,88 @@
+Clayry Dana Jayo (000138848)
+
+Database Rumah Sakkit
+
+1. Data Pasien
+* ID Pasien /  Nomor Rekam Medis (PK)
+* Nama Lengkap
+* Nomor Induk Kependudukan (NIK)
+* Tanggal Lahir & Jenis Kelamin
+* Alamat Lengkap & Nomor Telepon
+* Golongan Darah
+* Riwayat Alergi (obat/makanan)
+* Kontak Darurat (Nama, Hubungan, Nomor Telepon)
+
+2. Data Dokter & Tenaga Medis
+* ID Dokter / NIP (PK)
+* Nama Lengkap & Gelar
+* Nomor Surat Izin Praktik (SIP)
+* Spesialisasi / Bidang Keahlian
+* Nomor Telepon & Email
+* Jadwal Praktik (Hari, Jam Mulai, Jam Selesai)
+* Ruang Praktik / Poliklinik tempat bertugas
+
+3. Data Poliklinik / Departemen
+* ID Poliklinik (PK)
+* Nama Poliklinik 
+* Lokasi / Gedung / Lantai
+
+4. Data Pendaftaran & Janji Temu
+* ID Pendaftaran
+* ID Pasien
+* ID Dokter
+* Tanggal & Waktu Pendaftaran/Kunjungan
+* Nomor Antrean
+* Status Pendaftaran
+
+5. Data Rekam Medis / Pemeriksaan
+* ID Rekam Meids
+* iD Pendaftaran / ID Pasien
+* ID Dokter yang Memeriksa
+* Tanggal & Waktu Pemeriksaan
+* Anamnesis  / Keluhan Pasien
+* Hasil Pemeriksaan Fisik
+* Diagnosis
+* Catatan Tindakan Medis
+
+6. Data Obat & Inventaris
+* ID Obat
+* Nama Obat & Nama Generik
+* Kategori / Jenis Obat
+* Stok Obat
+* Satuan
+* Harga Eceran Obat
+* Tanggal Kadaluwarsa
+
+7. Data Resep & Obat
+* ID Resep
+* ID Rekam Medis
+* ID Dokter Penulis Resep
+* ID Obat
+* Dosis & Aturan Minum
+* Jumlah Obat yang Diberikan
+* Status Pengambilan Obat
+
+8. Data Kamar & Rawat Inap
+* ID Kamar
+* Nomor Kamar & Nomor Bed
+* Kelas Kamar
+* Tarif Kamar per Hari
+* Status Kamar
+* Data Log Rawat Inap: ID Rawat Inap, ID Pasien, ID Kamar, Tanggal Masuk, Tanggal Keluar
+
+9. Data Transaksi & Pembayaran
+* ID Pembayaran
+* ID Pendaftaran
+* ID Pasien
+* Tanggal & Waktu Transaksi 
+* Detail Komponen Biaya
+* Total Biaya
+* Metode Pembayaran
+* Status Pembayaran
+
+10. Data Asuransi
+* ID Asuransi Pasien
+* ID Pasien
+* Nama Penyedia Asuransi
+* Nomor Kartu Asuransi / Polis
+* Status Keaktifan Asuransi
