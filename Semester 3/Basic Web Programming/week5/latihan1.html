@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <title>Hello World</title>
+</head>
+<body>
+    <script>
+        function getGrade(nilai) {
+            if (nilai >= 85) {
+                return "A";
+            } else if (nilai >= 80) {
+                return "A-";
+            } else if (nilai >= 75) {
+                return "B+";
+            } else if (nilai >= 70) {
+                return "B";
+            } else if (nilai >= 65) {
+                return "B-";
+            } else if (nilai >= 60) {
+                return "C+";
+            } else if (nilai >= 55) {
+                return "C";
+            } else if (nilai >= 40) {
+                return "D";
+            } else {
+                return "E";
+            }
+        }
+
+        let input = window.prompt("Masukkan nilai (0-100):");
+        let nilai = Number(input);
+
+        if (input === null || input.trim() === "" || isNaN(nilai) || nilai < 0 || nilai > 100) {
+            alert("Input tidak valid! Masukkan angka 0 sampai 100.");
+        } else {
+            let grade = getGrade(nilai);
+            alert("Nilai: " + nilai + "\nGrade: " + grade);
+        }
+    </script>
+</body>
+</html>

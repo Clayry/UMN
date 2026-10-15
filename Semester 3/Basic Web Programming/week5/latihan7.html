@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>     
+    <title>Hello World</title>
+</head>
+<body>
+    <script>
+        const hari = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"];
+        let jumlah = [];
+
+        for (let i = 0; i < hari.length; i++) {
+            let input = window.prompt("Masukkan jumlah mahasiswa hari " + hari[i] + ":");
+            let n = Number(input);
+
+            if (input === null || input.trim() === "" || isNaN(n) || !Number.isInteger(n) || n < 0) {
+                alert("Input hari " + hari[i] + " tidak valid, dianggap 0.");
+                n = 0;
+            }
+            jumlah.push(n);
+        }
+
+        document.write("<h2>Grafik Jumlah Kehadiran Mahasiswa</h2>");
+
+        for (let i = 0; i < hari.length; i++) {
+            document.write(hari[i] + ": " + "x".repeat(jumlah[i]) + " (" + jumlah[i] + ")<br>");
+        }
+    </script>
+</body>
+</html>

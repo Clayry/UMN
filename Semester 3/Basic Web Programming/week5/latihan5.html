@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <title>Hello World</title>
+</head>
+<body>
+    <script>
+        let input = window.prompt("Masukkan sebuah angka:");
+        let batas = Number(input);
+
+        if (input === null || input.trim() === "" || isNaN(batas) || !Number.isInteger(batas) || batas < 1) {
+            document.write("Input tidak valid! Masukkan bilangan bulat >= 1.");
+        } else {
+            document.write("Bilangan ganjil dari 1 sampai " + batas + ":<br>");
+            for (let i = 1; i <= batas; i++) {
+                if (i % 2 === 1) {
+                    document.write(i + "<br>");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

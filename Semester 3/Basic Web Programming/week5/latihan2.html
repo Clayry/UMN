@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+    <title>Hello World</title>
+</head>
+<body>
+    <script>
+        function getGrade(nilai) {
+            if (nilai >= 85) {
+                return "A";
+            } else if (nilai >= 80) {
+                return "A-";
+            } else if (nilai >= 75) {
+                return "B+";
+            } else if (nilai >= 70) {
+                return "B";
+            } else if (nilai >= 65) {
+                return "B-";
+            } else if (nilai >= 60) {
+                return "C+";
+            } else if (nilai >= 55) {
+                return "C";
+            } else if (nilai >= 40) {
+                return "D";
+            } else {
+                return "E";
+            }
+        }
+
+        function hitungNilaiAkhir(tugas, uts, uas) {
+            return (tugas * 0.4) + (uts * 0.25) + (uas * 0.35);
+        }
+
+        function mintaNilai(pesan) {
+            let hasil;
+            while (true) {
+                let input = window.prompt(pesan);
+                if (input === null) {
+                    return NaN;
+                }
+                hasil = parseFloat(input);
+                if (!isNaN(hasil) && hasil >= 0 && hasil <= 100) {
+                    return hasil;
+                }
+                alert("Input tidak valid! Masukkan angka 0 sampai 100.");
+            }
+        }
+
+        let jumlah = Number(window.prompt("Masukkan jumlah mahasiswa:"));
+
+        if (isNaN(jumlah) || jumlah <= 0 || !Number.isInteger(jumlah)) {
+            document.write("Jumlah mahasiswa tidak valid!");
+        } else {
+            for (let i = 1; i <= jumlah; i++) {
+                let nama = window.prompt("Mahasiswa ke-" + i + "\nMasukkan Nama:");
+                if (nama === null || nama.trim() === "") {
+                    nama = "Tanpa Nama";
+                }
+
+                let tugas = mintaNilai("Mahasiswa ke-" + i + " (" + nama + ")\nMasukkan Nilai Tugas:");
+                let uts = mintaNilai("Mahasiswa ke-" + i + " (" + nama + ")\nMasukkan Nilai UTS:");
+                let uas = mintaNilai("Mahasiswa ke-" + i + " (" + nama + ")\nMasukkan Nilai UAS:");
+
+                if (isNaN(tugas) || isNaN(uts) || isNaN(uas)) {
+                    document.write(i + ". " + nama + "<br>");
+                    document.write("Data dibatalkan.<br><br>");
+                    continue;
+                }
+
+                let nilaiAkhir = hitungNilaiAkhir(tugas, uts, uas);
+                let grade = getGrade(nilaiAkhir);
+
+                document.write(i + ". " + nama + "<br>");
+                document.write("Tugas: " + tugas + "<br>");
+                document.write("UTS: " + uts + "<br>");
+                document.write("UAS: " + uas + "<br>");
+                document.write("Nilai Akhir: " + nilaiAkhir.toFixed(2) + "<br>");
+                document.write("Grade: " + grade + "<br>");
+                document.write("<br>");
+            }
+        }
+    </script>
+</body>
+</html>

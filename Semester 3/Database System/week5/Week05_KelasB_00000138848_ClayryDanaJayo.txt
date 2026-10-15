@@ -1,0 +1,154 @@
+==== NOMOR 1 ====
+-- 1a. Membuat database
+CREATE DATABASE company;
+USE company;
+
+-- 1b. Membuat tabel-tabel
+
+CREATE TABLE location (
+    location_id VARCHAR(5) PRIMARY KEY,
+    address VARCHAR(100),
+    postal_code VARCHAR(10),
+    city VARCHAR(50)
+);
+
+CREATE TABLE job (
+    job_id VARCHAR(5) PRIMARY KEY,
+    job_title VARCHAR(50),
+    min_salary INT,
+    max_salary INT
+);
+
+CREATE TABLE department (
+    department_id VARCHAR(5) PRIMARY KEY,
+    department_name VARCHAR(50),
+    manager_id VARCHAR(5),
+    location_id VARCHAR(5),
+    FOREIGN KEY (location_id) REFERENCES location(location_id)
+);
+
+CREATE TABLE employee (
+    employee_id VARCHAR(5) PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    birth_date DATE,
+    email VARCHAR(100),
+    phone_number VARCHAR(20),
+    hire_date DATE,
+    salary INT,
+    job_id VARCHAR(5),
+    department_id VARCHAR(5),
+    FOREIGN KEY (job_id) REFERENCES job(job_id),
+    FOREIGN KEY (department_id) REFERENCES department(department_id)
+);
+
+==== NOMOR 2 ====
+-- 2a. Insert ke tabel location
+INSERT INTO location (location_id, address, postal_code, city) VALUES
+('L0001', 'Grand Indonesia Lt. 9, Jalan M.H. Thamrin No 1, Jakarta Pusat', '10310', 'Jakarta'),
+('L0002', 'Pacific Place Lt. 7, Jalan Jenderal Sudirman Kav. 52-53, Jakarta Selatan', '12190', 'Jakarta');
+
+-- 2b. Insert ke tabel job
+INSERT INTO job (job_id, job_title, min_salary, max_salary) VALUES
+('J0001', 'President', 10000000, 15000000),
+('J0002', 'Accountant', 3000000, 4500000),
+('J0003', 'Accounting Manager', 5000000, 7000000),
+('J0004', 'IT Support', 3500000, 5000000),
+('J0005', 'Programmer', 4000000, 5500000),
+('J0006', 'Marketing Manager', 6000000, 8000000),
+('J0007', 'Marketing Representative', 4500000, 5500000),
+('J0008', 'HR Manager', 5000000, 6500000),
+('J0009', 'HR Representative', 3500000, 4500000);
+
+-- 2c. Insert ke tabel department
+INSERT INTO department (department_id, department_name, manager_id, location_id) VALUES
+('D0001', 'Accounting', 'E0002', 'L0002'),
+('D0002', 'IT', 'E0004', 'L0001'),
+('D0003', 'Human Resource', 'E0005', 'L0001'),
+('D0004', 'Marketing', 'E0010', 'L0002');
+
+-- 2d. Insert ke tabel employee
+INSERT INTO employee (employee_id, first_name, last_name, birth_date, email, phone_number, hire_date, salary, job_id, department_id) VALUES
+('E0001', 'Hideyoshi', 'Kinoshita', '1975-08-24', 'Hideyoshi.kino@gmail.com', '081689231099', '2002-01-11', 5000000, 'J0004', 'D0002'),
+('E0002', 'Sara', NULL, '1970-01-11', 'Sara@rocketmail.com', '089281849321', '2000-12-10', 5500000, 'J0003', 'D0001'),
+('E0003', 'Kazuyoshi', NULL, '1968-02-28', 'Kazuyoshi@gmail.com', '085252778438', '1999-07-25', 4500000, 'J0009', 'D0003'),
+('E0004', 'Shoichiro', 'Yukimura', '1967-02-01', 'Shoichiro.yuki@yahoo.com', '089928317822', '2000-04-17', 4500000, 'J0005', 'D0002'),
+('E0005', 'Chibi', 'Usa', '1950-06-30', 'Chibi.usa@gmail.com', '081329883547', '2001-08-10', 5000000, 'J0008', 'D0003'),
+('E0006', 'Yoshika', 'Saehara', '1977-10-21', 'Yoshika.sae@yahoo.com', '081299284628', '2005-11-18', 4500000, 'J0008', 'D0003'),
+('E0007', 'Kagami', 'Mikage', '1970-10-08', 'Kagami.mikage@rocketmail.com', '089628371298', '2002-05-15', 12500000, 'J0001', NULL),
+('E0008', 'Reiko', 'Shindo', '1948-11-14', 'Reiko.shindo@live.com', '085290802938', '2002-09-01', 3500000, 'J0004', 'D0002'),
+('E0009', 'Youko', 'Kuriki', '1970-03-19', 'Youko.kuriki@hotmail.com', '089922781924', '2007-04-08', 5500000, 'J0002', 'D0001'),
+('E0010', 'Mana', 'Ichihashi', '1976-11-21', 'Mana.ichihashi@gmail.com', '087888291322', '2003-11-20', 6000000, 'J0006', 'D0004'),
+('E0011', 'Kyoko', 'Aoi', '1965-09-30', 'Kyoko.aoi@gmail.com', '081290208851', '2005-05-13', 8000000, 'J0009', 'D0003');
+
+==== NOMOR 3 ====
+-- 3a. Chibi Usa -> Pedo Bear
+UPDATE employee
+SET first_name = 'Pedo', last_name = 'Bear', email = 'pedo.bear@gmail.com'
+WHERE employee_id = 'E0005';
+
+-- 3b. Krisis moneter: seluruh gaji turun Rp100.000
+UPDATE employee
+SET salary = salary - 100000;
+
+-- 3c. Sara pindah ke IT, ambil job Shoichiro (Programmer)
+UPDATE employee SET department_id = 'D0002', job_id = 'J0005' WHERE employee_id = 'E0002';
+
+-- Shoichiro pindah ke Accounting, ambil job lama Sara (Accounting Manager)
+UPDATE employee SET department_id = 'D0001', job_id = 'J0003' WHERE employee_id = 'E0004';
+
+-- 3d. Shoichiro dipecat
+DELETE FROM employee WHERE employee_id = 'E0004';
+
+-- 3e. Takumi Usui direkrut
+INSERT INTO employee (employee_id, first_name, last_name, birth_date, email, phone_number, hire_date, salary, job_id, department_id)
+VALUES ('E0012', 'Takumi', 'Usui', '1982-04-27', 'Usui.takumi@gmail.com', '085309009211', CURDATE(), 4500000, 'J0007', 'D0004');
+
+-- 3f. Kenaikan gaji Takumi Usui sebesar Rp200.000
+UPDATE employee
+SET salary = salary + 200000
+WHERE employee_id = 'E0012';
+
+-- 3g. Ulang tahun perusahaan ke-51 (10 Desember 2017):
+-- kenaikan 10% untuk karyawan lahir bulan November ATAU sudah berumur >= 50 tahun
+UPDATE employee
+SET salary = salary * 1.10
+WHERE MONTH(birth_date) = 11
+   OR TIMESTAMPDIFF(YEAR, birth_date, '2017-12-10') >= 50;
+
+==== NOMOR 4 ====
+-- 4a. Menghapus tabel (urutan: employee -> department -> job -> location)
+DROP TABLE employee;
+DROP TABLE department;
+DROP TABLE job;
+DROP TABLE location;
+
+-- 4b. Menghapus database
+DROP DATABASE company;
+
+==== NOMOR 5 ====
+
+Jika department.manager_id dijadikan FK ke employee.employee_id, maka akan
+terjadi circular (mutual) foreign key dependency antara tabel employee dan
+department:
+
+- employee.department_id  -> FK ke department.department_id
+- department.manager_id   -> FK ke employee.employee_id
+
+Akibatnya:
+1. CREATE TABLE: tidak ada urutan pembuatan tabel yang valid, karena masing-masing
+   tabel butuh tabel lainnya sudah ada lebih dulu (masalah "telur dan ayam").
+2. INSERT: baris pertama di kedua tabel tidak bisa diisi jika kedua FK wajib
+   diisi (NOT NULL), karena manager/department yang direferensikan belum ada.
+3. DELETE: menghapus seorang manager berisiko melanggar FK di department, dan
+   menghapus sebuah department berisiko melanggar FK di employee yang masih
+   menunjuk ke situ.
+
+Solusi yang umum dipakai:
+- Buat kolom FK-nya nullable, isi data secara bertahap (insert employee tanpa
+  department dulu, baru insert department, baru update employee), ATAU
+- Buat tabel tanpa FK constraint dulu, lalu tambahkan constraint-nya belakangan
+  dengan ALTER TABLE ... ADD CONSTRAINT ... FOREIGN KEY, setelah data awal
+  kedua tabel sudah terisi, ATAU
+- Nonaktifkan sementara FOREIGN_KEY_CHECKS (khusus MySQL) selama proses
+  pembuatan tabel dan insert data awal.

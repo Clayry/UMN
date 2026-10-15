@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello World</title>
+  <style>
+    body { font-family: system-ui, sans-serif; color: #212529; margin: 0; }
+    .wrap { max-width: 480px; margin: 0 auto; padding: 24px 16px; }
+    h1 { font-size: 1.75rem; font-weight: 500; margin: 0 0 32px; }
+    h2 { font-size: 1.4rem; font-weight: 500; margin: 0 0 12px; }
+    h3 { font-size: 1.15rem; font-weight: 500; margin: 16px 0 12px; }
+    input { box-sizing: border-box; width: 100%; padding: 12px; margin-bottom: 14px;
+            border: 1px solid #ced4da; border-radius: 4px; font-size: 0.9rem; }
+    input:focus { outline: 2px solid #0d6efd; outline-offset: 1px; }
+    button { background: #0d6efd; color: #fff; border: 0; border-radius: 4px;
+             padding: 8px 14px; font-size: 0.85rem; cursor: pointer; }
+    button:focus-visible { outline: 2px solid #0a58ca; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Document Object Model (DOM)</h1>
+    <h2>Pendaftaran Kelompok</h2>
+
+    <input type="text" id="namaKelompok" placeholder="Nama Kelompok">
+    <input type="number" id="jumlahAnggota" placeholder="Jumlah Anggota" min="0" max="20">
+
+    <div id="areaAnggota"></div>
+
+    <script>
+      var inputJumlah = document.getElementById("jumlahAnggota");
+      var area = document.getElementById("areaAnggota");
+
+      inputJumlah.addEventListener("input", function () {
+        area.innerHTML = "";
+
+        var jumlah = parseInt(inputJumlah.value, 10);
+        if (isNaN(jumlah) || jumlah < 1) return;
+        if (jumlah > 20) jumlah = 20;
+
+        var judul = document.createElement("h3");
+        judul.appendChild(document.createTextNode("Anggota Kelompok:"));
+        area.appendChild(judul);
+
+        for (var i = 1; i <= jumlah; i++) {
+          var field = document.createElement("input");
+          field.type = "text";
+          field.id = "anggota" + i;
+          field.placeholder = "Nama Anggota " + i;
+          area.appendChild(field);
+        }
+
+        var tombol = document.createElement("button");
+        tombol.type = "button";
+        tombol.appendChild(document.createTextNode("Daftar Kelompok"));
+        tombol.addEventListener("click", function () {
+          alert("Kelompok " + document.getElementById("namaKelompok").value + " terdaftar.");
+        });
+        area.appendChild(tombol);
+      });
+    </script>
+  </div>
+</body>
+</html>

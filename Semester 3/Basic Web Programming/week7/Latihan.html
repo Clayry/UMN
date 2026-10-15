@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello World</title>
+    </head>
+    <body>
+        <h1>Click Event</h1>
+        <button id="btnClickEv">Click Me!</button>
+        <div id="clickMsg"></div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $("#btnClickEv").click(function() {
+                $("#clickMsg").text("Button Above me is clicked.");
+            });
+        </script>
+    </body>
+</html>

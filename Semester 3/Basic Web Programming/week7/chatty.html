@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chatty</title>
+    </head>
+    <body>
+        <h1>Chatty</h1>
+
+        <div id="messages"></div>
+
+        <table>
+            <tr>
+                <td>
+                    <h2>Pengirim lain</h2>
+                    <form id="otherForm">
+                        <label for="otherName">Nama:</label>
+                        <input id="otherName" type="text" required>
+                        <label for="otherMessage">Message:</label>
+                        <input id="otherMessage" type="text" required>
+                        <button type="submit">Send</button>
+                    </form>
+                </td>
+                <td>
+                    <h2>Me</h2>
+                    <form id="meForm">
+                        <label for="myMessage">Message:</label>
+                        <input id="myMessage" type="text" required>
+                        <button type="submit">Send</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function addMessage(name, message) {
+                const messageElement = $("<p>").text(name + ": " + message);
+                $("#messages").prepend(messageElement);
+            }
+
+            $("#otherForm").submit(function(event) {
+                event.preventDefault();
+
+                const name = $("#otherName").val().trim();
+                const message = $("#otherMessage").val().trim();
+
+                if (name && message) {
+                    addMessage(name, message);
+                    $("#otherMessage").val("");
+                }
+            });
+
+            $("#meForm").submit(function(event) {
+                event.preventDefault();
+
+                const message = $("#myMessage").val().trim();
+
+                if (message) {
+                    addMessage("Me", message);
+                    $("#myMessage").val("");
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+        <title>Hello World</title>
+</head>
+<body>
+    <script>
+        let pilihan;
+        do {
+            let input = window.prompt('Ketik "luas" atau "keliling":');
+            if (input === null) {
+                pilihan = null;
+                break;
+            }
+            pilihan = input.trim().toLowerCase();
+            if (pilihan !== "luas" && pilihan !== "keliling") {
+                alert('Input tidak valid! Ketik "luas" atau "keliling".');
+            }
+        } while (pilihan !== "luas" && pilihan !== "keliling");
+
+        if (pilihan !== null) {
+            let panjang = Number(window.prompt("Masukkan panjang:"));
+            let lebar = Number(window.prompt("Masukkan lebar:"));
+
+            if (isNaN(panjang) || isNaN(lebar) || panjang <= 0 || lebar <= 0) {
+                alert("Panjang dan lebar harus angka lebih dari 0!");
+            } else {
+                let hasil;
+                if (pilihan === "luas") {
+                    hasil = panjang * lebar;
+                    alert("Luas = " + hasil);
+                    document.write("Panjang: " + panjang + "<br>");
+                    document.write("Lebar: " + lebar + "<br>");
+                    document.write("Luas = " + hasil);
+                } else {
+                    hasil = 2 * (panjang + lebar);
+                    alert("Keliling = " + hasil);
+                    document.write("Panjang: " + panjang + "<br>");
+                    document.write("Lebar: " + lebar + "<br>");
+                    document.write("Keliling = " + hasil);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
